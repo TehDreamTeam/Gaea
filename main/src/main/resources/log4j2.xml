@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <RandomAccessFile name="File" fileName="application.log">
+            <PatternLayout>
+                <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %5p --- %-45.45c{1.} %message%n%xEx</Pattern>
+            </PatternLayout>
+        </RandomAccessFile>
+
+        <Console name="Console">
+            <PatternLayout>
+                <Pattern>[%style{%d{HH:mm:ss.SSS}}{Red}] %highlight{%5p} --- %style{%-45.45c{1.}}{Cyan}%message%style{%throwable{none}}{Red}%n
+                </Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="File"/>
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
