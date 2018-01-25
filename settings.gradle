@@ -1,4 +1,5 @@
 rootProject.name = 'Nurse'
 
 include ':main'
+include ':domain'
 include ':core'
