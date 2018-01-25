@@ -9,8 +9,7 @@
 
         <Console name="Console">
             <PatternLayout>
-                <Pattern>[%style{%d{HH:mm:ss.SSS}}{Red}] %highlight{%5p} ---
-                    %style{%-45.45c{1.}}{Cyan}%message%style{%throwable{none}}{Red}%n
+                <Pattern>[%style{%d{HH:mm:ss.SSS}}{Red}] %highlight{%5p} --- %style{%-45.45c{1.}}{Cyan}%message%style{%throwable{none}}{Red}%n
                 </Pattern>
             </PatternLayout>
         </Console>
