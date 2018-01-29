@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class ClientRequestHandler implements RequestHandler {
 
@@ -21,7 +22,7 @@ public class ClientRequestHandler implements RequestHandler {
     }
 
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response) {
+    public void handle(HttpServletRequest request, HttpServletResponse response) throws IOException {
         logger.debug("Uri: '{}'.", request.getRequestURI());
 
         String patientType = RequestUtilities.extractPatientType(request);
@@ -30,6 +31,8 @@ public class ClientRequestHandler implements RequestHandler {
         Patient patient = store.getOrLoad(patientType);
         forwardRequestToPatient(patient, request);
 
+        response.setContentType("text/plain");
+        response.getWriter().println("ALLE MAAGDEN ZIJN KUT");
         setRequestOkay(response);
     }
 
