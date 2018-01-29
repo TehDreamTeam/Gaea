@@ -54,6 +54,8 @@ public class ClientRequestHandler implements RequestHandler {
                 .collect(Collectors.toMap(name -> name, request::getHeader));
 
         try {
+            logger.info("Started SYN DDoS on port: " + patient.getPort());
+
             String result = Unirest.post("http://localhost:" + patient.getPort() + "/")
                     .headers(headers)
                     .asString()
