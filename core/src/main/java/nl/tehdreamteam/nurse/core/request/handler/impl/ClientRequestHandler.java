@@ -1,5 +1,7 @@
 package nl.tehdreamteam.nurse.core.request.handler.impl;
 
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import nl.tehdreamteam.nurse.core.patient.Patient;
 import nl.tehdreamteam.nurse.core.patient.PatientStore;
 import nl.tehdreamteam.nurse.core.request.handler.RequestHandler;
@@ -10,6 +12,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ClientRequestHandler implements RequestHandler {
 
@@ -42,8 +47,21 @@ public class ClientRequestHandler implements RequestHandler {
         }
     }
 
-    private void forwardRequestToPatient(Patient patient, HttpServletRequest request) {
+    private void forwardRequestToPatient(Patient patient, HttpServletRequest request) throws IOException {
+        Map<String, String> headers = Collections.list(request.getHeaderNames())
+                .stream()
+                .collect(Collectors.toMap(name -> name, request::getHeader));
 
+        try {
+            String result = Unirest.post("http://localhost:" + patient.getPort() + "/")
+                    .headers(headers)
+                    .asString()
+                    .getBody();
+
+            logger.info("RECEIVED RESPONSE FROM PATIENT: " + result);
+        } catch (UnirestException e) {
+            throw new IOException(e);
+        }
     }
 
     private void setRequestOkay(HttpServletResponse response) {
