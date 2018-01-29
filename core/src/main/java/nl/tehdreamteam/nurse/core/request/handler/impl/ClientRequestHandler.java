@@ -50,6 +50,7 @@ public class ClientRequestHandler implements RequestHandler {
     private void forwardRequestToPatient(Patient patient, HttpServletRequest request) throws IOException {
         Map<String, String> headers = Collections.list(request.getHeaderNames())
                 .stream()
+                .filter(name -> name.equalsIgnoreCase("content-type"))
                 .collect(Collectors.toMap(name -> name, request::getHeader));
 
         try {
@@ -60,7 +61,7 @@ public class ClientRequestHandler implements RequestHandler {
 
             logger.info("RECEIVED RESPONSE FROM PATIENT: " + result);
         } catch (UnirestException e) {
-            throw new IOException(e);
+            throw new IOException("Failed to proxy request to patient.", e);
         }
     }
 
