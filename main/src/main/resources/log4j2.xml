@@ -25,5 +25,15 @@
             <AppenderRef ref="File"/>
             <AppenderRef ref="Console"/>
         </Logger>
+
+        <Logger name="io.netty" level="info">
+            <AppenderRef ref="File"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Logger name="org.asynchttpclient.netty" level="info">
+            <AppenderRef ref="File"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
     </Loggers>
 </Configuration>
