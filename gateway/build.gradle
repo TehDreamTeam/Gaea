@@ -1,0 +1,4 @@
+dependencies {
+    compile group: 'com.dexmatech.styx', name: 'styx-core', version: '1.0.22'
+    compile group: 'com.dexmatech.styx', name: 'grizzly-adapter', version: '1.0.22'
+}
