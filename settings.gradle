@@ -1,5 +1,4 @@
-rootProject.name = 'Nurse'
+rootProject.name = 'Gaea'
 
+include ':gateway'
 include ':main'
-include ':domain'
-include ':core'
