@@ -1,5 +1,5 @@
 allprojects {
-    group = 'nl.tehdreamteam.nurse'
+    group = 'nl.tehdreamteam.gaea'
     version = '0.0.0'
 }
 
